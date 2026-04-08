@@ -74,12 +74,6 @@ export default function About() {
             hardware-backed cryptography (iOS Secure Enclave, Android StrongBox),
             secure wallet operations, and API ergonomics for developer-facing SDKs.
           </p>
-          <p className="text-white/50 leading-relaxed">
-            When I&apos;m not shipping code, I&apos;m pushing the open-source roadmap,
-            mentoring developers, and leveling up through programs like the{' '}
-            <span className="text-white font-medium">MLH Fellowship</span>.
-          </p>
-
           {/* Tags */}
           <div className="flex flex-wrap gap-2 pt-2">
             {['Flutter', 'Dart', 'Kotlin', 'Swift', 'Solidity', 'ERC-4337', 'MPC', 'TypeScript'].map(

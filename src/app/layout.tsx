@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     'Kotlin',
     'Swift',
     'Next.js',
-    'MLH Fellowship',
   ],
   authors: [{ name: 'Godwin Alexander Ekainu' }],
   openGraph: {
