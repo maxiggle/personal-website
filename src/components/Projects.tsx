@@ -62,6 +62,20 @@ const projects: Project[] = [
     live: null,
   },
   {
+    id: 5,
+    title: 'web3-signers',
+    description:
+      'Co-authored a Flutter/Dart package that provides a unified Signer interface for Passkeys (WebAuthn/FIDO2), Platform Keys (Secure Enclave on iOS, Keystore on Android, Windows Hello), and Local Private Keys. Implements EIP-1271 and ERC-7739 signing standards with cross-platform hardware-backed security — the credential layer powering the Variance SDK ecosystem.',
+    tags: ['Dart', 'Flutter', 'Passkeys', 'WebAuthn', 'ERC-7739', 'EIP-1271', 'pub.dev'],
+    type: 'sdk',
+    badge: 'SDK · Open Source',
+    github: 'https://github.com/vaariance/web3-signers',
+    pubDev: 'https://pub.dev/packages/web3_signers',
+    appStore: null,
+    playStore: null,
+    live: null,
+  },
+  {
     id: 4,
     title: 'Flitaa & Getcoins',
     description:
