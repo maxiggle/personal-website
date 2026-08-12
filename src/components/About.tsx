@@ -24,24 +24,24 @@ export default function About() {
             <span className="text-white/50 text-xs uppercase tracking-[0.2em] font-medium">
               About me
             </span>
-            <h2 className="font-display font-bold text-4xl md:text-5xl leading-tight text-white mt-2">
+            <h2 className="font-display font-extrabold text-4xl md:text-5xl leading-tight text-foreground mt-2">
               Building at the<br />
               intersection of{' '}
-              <span className="text-white/60">mobile</span>{' '}
+              <span className="text-accent-green">mobile</span>{' '}
               and{' '}
-              <span className="text-white/60">Web3</span>
+              <span className="text-accent-purple">Web3</span>
             </h2>
           </div>
-          <div className="w-12 h-1 bg-white/40 rounded-full" />
+          <div className="w-12 h-1 bg-white/20 rounded-full" />
 
-          {/* Stats — glass cards */}
+          {/* Stats cards */}
           <div className="flex gap-4 pt-4 flex-wrap">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="flex flex-col bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-5 py-4"
+                className="flex flex-col bg-white/[0.05] border border-white/[0.08] rounded-2xl px-5 py-4"
               >
-                <span className="font-display font-bold text-3xl text-white leading-none">
+                <span className="font-display font-extrabold text-3xl text-foreground leading-none">
                   {stat.value}
                 </span>
                 <span className="text-white/50 text-xs uppercase tracking-wider mt-1.5">
@@ -74,13 +74,22 @@ export default function About() {
             hardware-backed cryptography (iOS Secure Enclave, Android StrongBox),
             secure wallet operations, and API ergonomics for developer-facing SDKs.
           </p>
+          <p className="text-white/50 leading-relaxed">
+            I&apos;m also a professional technical writer with 3 years of experience.
+            On contract with{' '}
+            <span className="text-white/80 font-medium">Ninetailed GmbH</span>{' '}
+            (since acquired by{' '}
+            <span className="text-white/80 font-medium">Contentful</span>) I wrote
+            developer articles and product documentation, and I&apos;ve authored
+            technical content for Codemagic, Strapi, OpenReplay, and ButterCMS.
+          </p>
           {/* Tags */}
           <div className="flex flex-wrap gap-2 pt-2">
-            {['Flutter', 'Dart', 'Kotlin', 'Swift', 'Solidity', 'ERC-4337', 'MPC', 'TypeScript'].map(
+            {['Flutter', 'Dart', 'Kotlin', 'Swift', 'Solidity', 'ERC-4337', 'MPC', 'TypeScript', 'Technical Writing', 'Documentation'].map(
               (tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/60 text-xs"
+                  className="px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-white/80 text-xs"
                 >
                   {tag}
                 </span>

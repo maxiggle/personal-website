@@ -1,15 +1,18 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { FiGithub, FiSmartphone, FiCpu } from 'react-icons/fi'
 import { SiEthereum, SiAppstore, SiGoogleplay, SiDart } from 'react-icons/si'
+
+type ProjectType = 'mobile' | 'web3' | 'sdk' | 'contrib'
 
 interface Project {
   id: number
   title: string
   description: string
   tags: string[]
-  type: 'mobile' | 'web3' | 'sdk' | 'contrib'
+  type: ProjectType
   badge: string
   github: string | null
   pubDev: string | null
@@ -17,6 +20,14 @@ interface Project {
   playStore: string | null
   live: string | null
 }
+
+const filters: { label: string; value: ProjectType | 'all' }[] = [
+  { label: 'All', value: 'all' },
+  { label: 'Mobile', value: 'mobile' },
+  { label: 'SDK', value: 'sdk' },
+  { label: 'Web3', value: 'web3' },
+  { label: 'Contributions', value: 'contrib' },
+]
 
 const projects: Project[] = [
   {
@@ -102,6 +113,11 @@ const cardVariants = {
 }
 
 export default function Projects() {
+  const [active, setActive] = useState<ProjectType | 'all'>('all')
+
+  const visible =
+    active === 'all' ? projects : projects.filter((p) => p.type === active)
+
   return (
     <section id="projects" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -111,12 +127,12 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12 space-y-2"
+          className="mb-8 space-y-2"
         >
           <span className="text-white/50 text-xs uppercase tracking-[0.2em] font-medium">
             My work
           </span>
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-white">
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl text-foreground">
             Featured Projects
           </h2>
           <p className="text-white/40 max-w-xl mt-2">
@@ -124,23 +140,53 @@ export default function Projects() {
           </p>
         </motion.div>
 
+        {/* Filter tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex flex-wrap gap-2 mb-10"
+        >
+          {filters.map((filter) => {
+            const isActive = active === filter.value
+            return (
+              <button
+                key={filter.value}
+                onClick={() => setActive(filter.value)}
+                aria-pressed={isActive}
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${
+                  isActive
+                    ? 'bg-foreground border-foreground text-background'
+                    : 'bg-transparent border-white/[0.08] text-white/50 hover:text-foreground hover:border-white/20'
+                }`}
+              >
+                {filter.label}
+              </button>
+            )
+          })}
+        </motion.div>
+
         {/* Cards grid */}
         <motion.div
+          key={active}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {projects.map((project) => (
+          <AnimatePresence mode="popLayout">
+          {visible.map((project) => (
             <motion.article
               key={project.id}
+              layout
               variants={cardVariants}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="group relative bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden hover:bg-white/[0.15] hover:border-white/30 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(255,255,255,0.08)] flex flex-col"
+              exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="group relative bg-white/[0.05] rounded-2xl border border-white/[0.08] overflow-hidden hover:bg-white/[0.08] hover:border-white/[0.14] transition-all duration-300 flex flex-col"
             >
               {/* Image placeholder */}
-              <div className="w-full h-44 bg-white/5 flex items-center justify-center relative overflow-hidden">
+              <div className="w-full h-44 bg-white/[0.02] flex items-center justify-center relative overflow-hidden">
                 {/* Dot grid pattern */}
                 <div
                   className="absolute inset-0 opacity-[0.06]"
@@ -166,12 +212,16 @@ export default function Projects() {
               <div className="p-6 flex flex-col flex-1">
                 <span
                   className={`text-xs uppercase tracking-[0.2em] font-medium ${
-                    project.type === 'mobile' ? 'text-white/70' : 'text-violet-300'
+                    project.type === 'mobile'
+                      ? 'text-accent-green'
+                      : project.type === 'web3'
+                      ? 'text-accent-purple'
+                      : 'text-accent-blue'
                   }`}
                 >
                   {project.badge}
                 </span>
-                <h3 className="font-display font-bold text-xl text-white mt-1">
+                <h3 className="font-display font-bold text-xl text-foreground mt-1">
                   {project.title}
                 </h3>
                 <p className="text-white/50 text-sm leading-relaxed mt-2 flex-1">
@@ -183,7 +233,7 @@ export default function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/60 text-xs"
+                      className="px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-white/80 text-xs"
                     >
                       {tag}
                     </span>
@@ -198,7 +248,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} GitHub repository`}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/30 text-white text-xs font-medium hover:bg-white/20 hover:border-white/50 transition-all duration-200"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/[0.12] text-foreground text-xs font-medium hover:bg-white/[0.08] hover:border-white/25 transition-all duration-200"
                     >
                       <FiGithub size={13} />
                       GitHub
@@ -210,7 +260,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} on pub.dev`}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/30 text-white text-xs font-medium hover:bg-white/20 hover:border-white/50 transition-all duration-200"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/[0.12] text-foreground text-xs font-medium hover:bg-white/[0.08] hover:border-white/25 transition-all duration-200"
                     >
                       <SiDart size={13} />
                       pub.dev
@@ -222,7 +272,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} App Store`}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/30 text-white text-xs font-medium hover:bg-white/20 hover:border-white/50 transition-all duration-200"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/[0.12] text-foreground text-xs font-medium hover:bg-white/[0.08] hover:border-white/25 transition-all duration-200"
                     >
                       <SiAppstore size={13} />
                       App Store
@@ -234,7 +284,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} Play Store`}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/15 text-white/70 text-xs font-medium hover:bg-white/20 hover:border-white/30 hover:text-white transition-all duration-200"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/[0.08] text-white/60 text-xs font-medium hover:bg-white/[0.08] hover:border-white/20 hover:text-foreground transition-all duration-200"
                     >
                       <SiGoogleplay size={13} />
                       Play Store
@@ -244,6 +294,7 @@ export default function Projects() {
               </div>
             </motion.article>
           ))}
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>

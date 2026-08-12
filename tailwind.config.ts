@@ -9,17 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#0d0618',
-        accent: '#ffffff',
-        'accent-dim': '#e2d9f3',
-        surface: '#1a0f3d',
-        'surface-2': '#21155a',
-        border: '#3d2a6e',
-        muted: '#a89bc2',
+        background: '#09090b',
+        foreground: '#fafafa',
+        muted: 'rgba(250, 250, 250, 0.6)',
+        card: 'rgba(250, 250, 250, 0.05)',
+        'card-border': 'rgba(250, 250, 250, 0.08)',
+        // Role-pill accents
+        'accent-blue': '#60a5fa',
+        'accent-purple': '#c084fc',
+        'accent-green': '#34d399',
       },
       fontFamily: {
-        display: ['var(--font-space-grotesk)', 'sans-serif'],
-        body: ['var(--font-plus-jakarta)', 'sans-serif'],
+        display: ['var(--font-outfit)', 'sans-serif'],
+        body: ['var(--font-outfit)', 'sans-serif'],
       },
       animation: {
         marquee: 'marquee 35s linear infinite',

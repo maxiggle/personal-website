@@ -1,27 +1,22 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, Plus_Jakarta_Sans } from 'next/font/google'
+import { Outfit } from 'next/font/google'
 import './globals.css'
 
-const spaceGrotesk = Space_Grotesk({
+const outfit = Outfit({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-plus-jakarta',
-  weight: ['400', '500', '600'],
+  variable: '--font-outfit',
+  weight: ['300', '400', '500', '600', '700', '800'],
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Godwin Alexander Ekainu — Mobile Engineer & Web3 Infrastructure',
+  title: 'Godwin Alexander Ekainu — Software Engineer & Technical Writer',
   description:
-    'Portfolio of Godwin Alexander Ekainu, a Mobile Engineer and Web3 Infrastructure developer specializing in Flutter, Kotlin, Swift, Solidity, and Next.js.',
+    'Portfolio of Godwin Alexander Ekainu — Software Engineer building production mobile apps, Web3 SDKs, and developer-facing technical content for Codemagic, Strapi, OpenReplay, and more.',
   keywords: [
+    'Software Engineer',
     'Mobile Engineer',
+    'Technical Writer',
     'Web3',
     'Flutter',
     'Solidity',
@@ -29,12 +24,13 @@ export const metadata: Metadata = {
     'Kotlin',
     'Swift',
     'Next.js',
+    'Developer Advocate',
   ],
   authors: [{ name: 'Godwin Alexander Ekainu' }],
   openGraph: {
-    title: 'Godwin Alexander Ekainu — Mobile Engineer & Web3 Infrastructure',
+    title: 'Godwin Alexander Ekainu — Software Engineer & Technical Writer',
     description:
-      'Building at the intersection of mobile and the decentralized web.',
+      'Building at the intersection of mobile, Web3, and technical content.',
     type: 'website',
   },
 }
@@ -45,11 +41,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${plusJakarta.variable}`}
-    >
-      <body className="bg-background text-white font-body antialiased">
+    <html lang="en" className={`${outfit.variable} dark`}>
+      <body className="bg-background text-foreground font-body antialiased">
         {children}
       </body>
     </html>

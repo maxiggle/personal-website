@@ -29,10 +29,10 @@ const doubled = [...skills, ...skills]
 
 export default function SkillsTicker() {
   return (
-    <section className="py-8 overflow-hidden border-y border-white/10 bg-white/5 backdrop-blur-sm relative">
+    <section className="py-7 overflow-hidden border-y border-white/5 relative">
       {/* Left/right fade masks — match body bg */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#0d0618] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#0d0618] to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
       <div className="flex marquee-track animate-marquee" style={{ width: 'max-content' }}>
         {doubled.map((skill, index) => {
