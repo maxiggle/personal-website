@@ -75,13 +75,15 @@ export default function About() {
             secure wallet operations, and API ergonomics for developer-facing SDKs.
           </p>
           <p className="text-white/50 leading-relaxed">
-            I&apos;m also a professional technical writer with 3 years of experience.
-            On contract with{' '}
+            I&apos;m also a professional technical writer and documentation engineer
+            with 3 years of experience. On contract with{' '}
             <span className="text-white/80 font-medium">Ninetailed GmbH</span>{' '}
             (since acquired by{' '}
             <span className="text-white/80 font-medium">Contentful</span>) I wrote
             developer articles and product documentation, and I&apos;ve authored
-            technical content for Codemagic, Strapi, OpenReplay, and ButterCMS.
+            technical content for Codemagic, Strapi, OpenReplay, and ButterCMS. I build
+            docs sites with Mintlify, Docusaurus, and Document360, and write
+            OpenAPI/Swagger references in Markdown and XML.
           </p>
           {/* Tags */}
           <div className="flex flex-wrap gap-2 pt-2">

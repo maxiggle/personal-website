@@ -37,8 +37,8 @@ const services: Service[] = [
     icon: FiEdit3,
     title: 'Technical Writing & Documentation',
     description:
-      'Professional technical writer with 3 years of experience — including contract work for Ninetailed (acquired by Contentful) writing developer articles and product docs, plus content for Codemagic, Strapi, OpenReplay, and ButterCMS.',
-    tags: ['Technical Writing', 'Documentation', 'Developer Content', 'Video'],
+      'Professional technical writer and documentation engineer with 3 years of experience — including contract work for Ninetailed (acquired by Contentful) writing developer articles and product docs. I build and maintain docs sites with Mintlify, Docusaurus, and Document360, and author OpenAPI/Swagger references in Markdown and XML.',
+    tags: ['Documentation Engineer', 'Swagger', 'Mintlify', 'Docusaurus', 'Document360', 'Markdown', 'XML'],
   },
 ]
 
